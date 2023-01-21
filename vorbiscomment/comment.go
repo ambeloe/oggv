@@ -1,4 +1,4 @@
-package voribscomment
+package vorbiscomment
 
 import (
 	"encoding/binary"
