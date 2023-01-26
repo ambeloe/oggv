@@ -33,32 +33,32 @@ func GenerateImageComment(img []byte, imgDescription string, imgType uint32) (st
 
 	temp = make([]byte, 4)
 	//generate unencoded frame
-	binary.LittleEndian.PutUint32(temp, imgType)
+	binary.BigEndian.PutUint32(temp, imgType)
 	mbp = append(mbp, temp...)
 
-	binary.LittleEndian.PutUint32(temp, uint32(len(mimeType)))
+	binary.BigEndian.PutUint32(temp, uint32(len(mimeType)))
 	mbp = append(mbp, temp...)
 
 	mbp = append(mbp, mimeType...)
 
-	binary.LittleEndian.PutUint32(temp, uint32(len(imgDescription)))
+	binary.BigEndian.PutUint32(temp, uint32(len(imgDescription)))
 	mbp = append(mbp, temp...)
 
 	mbp = append(mbp, imgDescription...)
 
-	binary.LittleEndian.PutUint32(temp, uint32(conf.Width))
+	binary.BigEndian.PutUint32(temp, uint32(conf.Width))
 	mbp = append(mbp, temp...)
 
-	binary.LittleEndian.PutUint32(temp, uint32(conf.Width))
+	binary.BigEndian.PutUint32(temp, uint32(conf.Width))
 	mbp = append(mbp, temp...)
 
-	binary.LittleEndian.PutUint32(temp, uint32(8)) //todo: some images won't be 8bpp (png)
+	binary.BigEndian.PutUint32(temp, uint32(8)) //todo: some images won't be 8bpp (png)
 	mbp = append(mbp, temp...)
 
-	binary.LittleEndian.PutUint32(temp, uint32(0))
+	binary.BigEndian.PutUint32(temp, uint32(0))
 	mbp = append(mbp, temp...)
 
-	binary.LittleEndian.PutUint32(temp, uint32(len(img)))
+	binary.BigEndian.PutUint32(temp, uint32(len(img)))
 	mbp = append(mbp, temp...)
 
 	mbp = append(mbp, img...)
