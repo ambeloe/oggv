@@ -31,6 +31,7 @@ func GenerateImageComment(img []byte, imgDescription string, imgType uint32) (st
 		return "", err
 	}
 
+	temp = make([]byte, 4)
 	//generate unencoded frame
 	binary.LittleEndian.PutUint32(temp, imgType)
 	mbp = append(mbp, temp...)

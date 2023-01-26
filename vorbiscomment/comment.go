@@ -28,7 +28,7 @@ func ReadOggVorbis(r io.Reader) (*OggVorbis, error) {
 	for {
 		p, err = dec.ReadPage()
 		switch err {
-		case io.EOF:
+		case io.EOF, io.ErrUnexpectedEOF: //unexpected eof is weird; keep an eye on it
 			goto ex
 		case nil:
 		default:
